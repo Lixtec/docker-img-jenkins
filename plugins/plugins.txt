@@ -1,0 +1,12 @@
+greenballs:latest
+simple-theme-plugin:latest
+credentials:latest
+credentials-binding:latest
+git:latest
+git-parameter:latest
+git-client:latest
+mailer:latest
+ssh:latest
+sonar:latest
+gradle:latest
+scm-api:latest
