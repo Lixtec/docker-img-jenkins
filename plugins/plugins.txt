@@ -10,3 +10,6 @@ ssh:latest
 sonar:latest
 gradle:latest
 scm-api:latest
+mattermost:latest
+ssh-agent:latest
+
