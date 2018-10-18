@@ -11,13 +11,20 @@ ENV VERSION_DOCKER=${VERSION_DOCKER:-17.06.2~ce-0~debian}
 RUN echo "version jenkins: $JENKINS_VERSION"
 RUN echo "version docker: $VERSION_DOCKER"
 
-RUN apt-get update -y && apt-get install -y firefox nano curl sshpass software-properties-common apt-transport-https &&\
+RUN apt update -y  && apt-get install -y nano curl sshpass software-properties-common apt-transport-https &&\
     curl -kfsSL https://download.docker.com/linux/debian/gpg |  apt-key add - &&\
     apt-key fingerprint 0EBFCD88 &&\
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 RUN update-ca-certificates && apt -y full-upgrade && apt-get update -y &&\
     apt-get -y install apt-transport-https docker-ce=${VERSION_DOCKER} && apt -y autoremove 
-RUN apt-mark hold 'docker-ce' && apt-get clean
+RUN apt-mark hold 'docker-ce'
+
+RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com C1289A29 
+RUN echo "deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main" >> /etc/apt/sources.list  &&\ 
+    apt update -y && apt install -y firefox-mozilla-build 
+
+RUN apt-get clean
+
 
 COPY plugins/plugins.txt /usr/share/jenkins/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
