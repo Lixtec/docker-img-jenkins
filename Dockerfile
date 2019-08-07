@@ -28,5 +28,5 @@ RUN apt-get clean
 
 COPY plugins/plugins.txt /usr/share/jenkins/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
-RUN usermod -aG docker jenkins
-USER jenkins
+#RUN usermod -aG docker jenkins
+#USER jenkins
