@@ -1,4 +1,4 @@
-ARG JENKINS_VERSION=2.138.2
+ARG JENKINS_VERSION=2.176.2
 ARG VERSION_DOCKER=17.06.2~ce-0~debian
 FROM jenkins/jenkins:${JENKINS_VERSION}
 
@@ -19,7 +19,7 @@ RUN update-ca-certificates && apt -y full-upgrade && apt-get update -y &&\
     apt-get -y install apt-transport-https docker-ce=${VERSION_DOCKER} && apt -y autoremove 
 RUN apt-mark hold 'docker-ce'
 
-RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com C1289A29 
+RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C
 RUN echo "deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main" >> /etc/apt/sources.list  &&\ 
     apt update -y && apt install -y firefox-mozilla-build 
 
